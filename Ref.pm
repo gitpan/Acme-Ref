@@ -2,23 +2,14 @@ package Acme::Ref;
 
 use strict;
 use warnings;
+use base 'Exporter';
 
-our %EXPORT_TAGS = ( 'all' => [ qw(
-	
-) ] );
+our @EXPORT_OK = ( 'deref' );
 
-our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
-
-our @EXPORT = qw(
-    deref	
-);
-
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require XSLoader;
 XSLoader::load('Acme::Ref', $VERSION);
-
-# Preloaded methods go here.
 
 sub deref {
     my $str = shift;
@@ -31,56 +22,34 @@ sub deref {
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
-Acme::Ref - Perl extension for blah blah blah
+Acme::Ref - unstringify a reference
 
 =head1 SYNOPSIS
 
-  use Acme::Ref;
-  blah blah blah
-
-=head1 ABSTRACT
-
-  This should be the abstract for Acme::Ref.
-  The abstract is used when making PPD (Perl Package Description) files.
-  If you don't want an ABSTRACT you should also edit Makefile.PL to
-  remove the ABSTRACT_FROM option.
+  use Acme::Ref qw/deref/;
+  my $h = { yomomma => q!so fat! };
+  print deref("$h")->{yomomma};
 
 =head1 DESCRIPTION
 
-Stub documentation for Acme::Ref, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+  Allows Jaap to do twisted things.
 
-Blah blah blah.
-
-=head2 EXPORT
-
-None by default.
-
-
+  http://zoidberg.sf.net/
 
 =head1 SEE ALSO
 
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
-
-If you have a mailing list set up for your module, mention it here.
-
-If you have a web site set up for your module, mention it here.
+  man perlguts
 
 =head1 AUTHOR
 
-root, E<lt>root@internE<gt>
+Raoul Zwart, E<lt>rlzwart@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2003 by root
+Copyright 2003 by Raoul Zwart
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 
